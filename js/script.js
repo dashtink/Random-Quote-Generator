@@ -58,23 +58,29 @@ console.log(quotes);
 
 function getRandomQuote(arry) {
   let i = 0;
-  i = Math.floor(Math.random() * arry.length) + 1;
+  i = Math.floor(Math.random() * arry.length);
   let randQuote = arry[i];
   return randQuote;
 }
 
-console.log(getRandomQuote(quotes));
 
 /***
  * `printQuote` function
 ***/
 
-function (print)
+function printQuote (){
+  let i = getRandomQuote(quotes);
+  let quotePrint = '<p class="quote">' + i.quote +  '</p> <p class="source">' + i.source + '<span class="citation">' + i.citation + '</span> <span class="year">' + i.year + '</span><p/>';
+  return quotePrint;
+}
 
+const printToPage = document.querySelector('quote-box');
+
+printToPage.innerHTML = printQuote();
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-//document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
