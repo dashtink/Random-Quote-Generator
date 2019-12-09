@@ -1,7 +1,7 @@
 /******************************************
 Treehouse FSJS Techdegree:
 Project 1 - A Random Quote Generator
-Dani Kellogg 
+Dani Kellogg - 2019
 ******************************************/
 
 /*** 
@@ -50,14 +50,6 @@ let quotes = [
   imdbLink: "https://www.imdb.com/title/tt0167261"
   },
   {
-  quote: "It's a trap!",
-  source: "Admiral Ackbar",
-  citation: "Star Wars: Episode VI - Return of the Jedi",
-  year: 1983,
-  imdbRating: 8.7,
-  imdbLink: "https://www.imdb.com/title/tt0086190"
-  },
-  {
   quote: "You can't handle the truth!",
   source: "Nathan Jessep",
   ciation: "A Few Good Men",
@@ -65,7 +57,13 @@ let quotes = [
   imdbRating: 7.7,
   imdbLink: "https://www.imdb.com/title/tt0104257"
   },
-  // Citation and Year removed below to demostrate conditional strings in "printQuote" function
+  // 'citation', 'year' and 'imdbRating' removed below to demostrate conditional strings in "printQuote" function
+  {
+  quote: "It's a trap!",
+  source: "Admiral Ackbar",
+  citation: "Star Wars: Episode VI - Return of the Jedi",
+  year: 1983,
+  },
   {
   quote: "Say hello to my little friend!",
   source: "Tony Montana",
@@ -113,7 +111,11 @@ function printQuote(){
 
   //Adds IMDB Rating and Link
 
-  quoteToPage += '<span class="year"><a href="' + i.imdbLink + '"> IMDB Rating: ' + i.imdbRating + '</a></span><p/>';
+if(i.hasOwnProperty('imdbRating')){
+  quoteToPage += '<span class="year"><a href="' + i.imdbLink + '"> IMDB Rating: ' + i.imdbRating + '</a></span>';
+};
+  
+  quoteToPage += '<p/>';
 
   const printToPage = document.querySelector('#quote-box');
   printToPage.innerHTML = quoteToPage;
