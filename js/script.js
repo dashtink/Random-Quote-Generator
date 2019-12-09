@@ -72,6 +72,12 @@ function printQuote(){
 }
 
 /***
+ Calls "printQuote" function on page load.
+ ***/
+
+document.onload = printQuote();
+
+/***
 Adds event listener to the "Show another quote" button and uses the "printQuote" function to print quote to page.
 ***/
 
