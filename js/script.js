@@ -80,9 +80,9 @@ let quotes = [
   }
 ];
 
-/***
-Gets a random quote from the "quotes" object. 
-***/
+/**
+* Gets a random quote from the "quotes" object. 
+*/
 
 function getRandomQuote(arry) {
   let i = 0;
@@ -92,13 +92,27 @@ function getRandomQuote(arry) {
   return randQuote;
 }
 
+/**
+ * Gets random rgb color values
+ */
+
+ function randomColor(){
+   let r = Math.floor(Math.random() * 256);
+   let g = Math.floor(Math.random() * 256);
+   let b = Math.floor(Math.random() * 256);
+
+   let rgbColor = "rgb("+ r + ", " + g + ", " + b + ")";
+   document.body.style.backgroundColor = rgbColor;
+   console.log(rgbColor);
+ }
+
 /***
 Prints the random quote from the "getRandomQuote" function to the page.
 ***/
 
 function printQuote(){
   let i = getRandomQuote(quotes);
-  let quoteToPage = '<p class="quote">' + i.quote +  '</p> <p class="source">' + i.source;
+  let quoteToPage = '<p class="quote">' + i.quote + '</p> <p class="source">' + i.source;
 
 //Checks if citation and year property exist for the quote object
   if(i.hasOwnProperty('citation')){
@@ -116,6 +130,8 @@ if(i.hasOwnProperty('imdbRating')){
 };
   
   quoteToPage += '<p/>';
+
+  randomColor();
 
   const printToPage = document.querySelector('#quote-box');
   printToPage.innerHTML = quoteToPage;
