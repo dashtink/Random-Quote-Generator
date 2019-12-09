@@ -1,16 +1,13 @@
 /******************************************
 Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
+Project 1 - A Random Quote Generator
+Dani Kellogg 
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
 /*** 
- * `quotes` array 
+Array of movie quotes - Quotes pulled from an IMDB list "Top 100 Movie Quotes" - https://www.imdb.com/list/ls031286652/ 
 ***/
-//Quotes pulled from an IMDB list "Top 100 Movie Quotes" - https://www.imdb.com/list/ls031286652/ 
+
 let quotes = [
   {
   quote: "That'll do, pig. That'll do",
@@ -50,37 +47,32 @@ let quotes = [
   }
 ];
 
-console.log(quotes);
-
 /***
- * `getRandomQuote` function
+Gets a random quote from the "quotes" object. 
 ***/
 
 function getRandomQuote(arry) {
   let i = 0;
   i = Math.floor(Math.random() * arry.length);
   let randQuote = arry[i];
+
   return randQuote;
 }
 
-
 /***
- * `printQuote` function
+Prints the random quote from the "getRandomQuote" function to the page.
 ***/
 
-function printQuote (){
+function printQuote(){
   let i = getRandomQuote(quotes);
-  let quotePrint = '<p class="quote">' + i.quote +  '</p> <p class="source">' + i.source + '<span class="citation">' + i.citation + '</span> <span class="year">' + i.year + '</span><p/>';
-  return quotePrint;
+  // add conditional statments in variable
+  let quoteToPage = '<p class="quote">' + i.quote +  '</p> <p class="source">' + i.source + '<span class="citation">' + i.citation + '</span><span class="year">' + i.year + '</span><p/>';
+  const printToPage = document.querySelector('#quote-box');
+  printToPage.innerHTML = quoteToPage;
 }
 
-const printToPage = document.querySelector('quote-box');
-
-printToPage.innerHTML = printQuote();
-
 /***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
+Adds event listener to the "Show another quote" button and uses the "printQuote" function to print quote to page.
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
