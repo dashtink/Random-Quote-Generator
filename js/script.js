@@ -132,3 +132,10 @@ Adds event listener to the "Show another quote" button and uses the "printQuote"
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+
+/**
+ * Automatically generates a new quote after 10 seconds
+ */
+
+ window.setInterval(printQuote, 1000);
