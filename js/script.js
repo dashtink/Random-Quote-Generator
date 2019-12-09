@@ -13,37 +13,72 @@ let quotes = [
   quote: "That'll do, pig. That'll do",
   source: "Farmer Hoggett",
   citation: "Babe",
-  year: 1995
+  year: 1995,
+  imdbRating: 6.7,
+  imdbLink: "https://www.imdb.com/title/tt0112431"
   },
   {
   quote: "Roads? Where we're going, we don't need roads.",
   source: "Dr. Emmett Brown",
   citation: "Back to the Future",
-  year: 1985
+  year: 1985,
+  imdbRating: 8.5,
+  imdbLink: "https://www.imdb.com/title/tt0088763"
   },
   {
   quote: "You're gonna need a bigger boat.",
   source: "Martin Brody",
   citation: "Jaws",
-  year: 1975
+  year: 1975,
+  imdbRating: 8.0,
+  imdbLink: "https://www.imdb.com/title/tt0073195"
   },
   {
   quote: "Yippie-ki-yay, *beep*",
   source: "John McClane",
   citation: "Die Hard",
-  year: 1998
+  year: 1998,
+  imdbRating: 8.2,
+  imdbLink: "https://www.imdb.com/title/tt0095016"
   },
   {
   quote: "My precious.",
   source: "Gollum",
   citation: "The Lord of the Rings: The Two Towers",
-  year: 2002
+  year: 2002,
+  imdbRating: 8.7,
+  imdbLink: "https://www.imdb.com/title/tt0167261"
   },
   {
-  quote: "Do, or do not. There is no try",
-  source: "Yoda",
-  citation: "Star Wars: Episode V - The Empire Strikes Back",
-  year: 1980
+  quote: "It's a trap!",
+  source: "Admiral Ackbar",
+  citation: "Star Wars: Episode VI - Return of the Jedi",
+  year: 1983,
+  imdbRating: 8.7,
+  imdbLink: "https://www.imdb.com/title/tt0086190"
+  },
+  {
+  quote: "You can't handle the truth!",
+  source: "Nathan Jessep",
+  ciation: "A Few Good Men",
+  year: 1992,
+  imdbRating: 7.7,
+  imdbLink: "https://www.imdb.com/title/tt0104257"
+  },
+  // Citation and Year removed below to demostrate conditional strings in "printQuote" function
+  {
+  quote: "Say hello to my little friend!",
+  source: "Tony Montana",
+  citation: "Scarface",
+  imdbRating: 8.3,
+  imdbLink: "https://www.imdb.com/title/tt0086250"
+  },
+  {
+  quote: "Go ahead. Make my day.",
+  source: "Harry Callahan",
+  year: 1983,
+  imdbRating: 6.6,
+  imdbLink: "https://www.imdb.com/title/tt0086383"
   }
 ];
 
@@ -65,8 +100,21 @@ Prints the random quote from the "getRandomQuote" function to the page.
 
 function printQuote(){
   let i = getRandomQuote(quotes);
-  // add conditional statments in variable
-  let quoteToPage = '<p class="quote">' + i.quote +  '</p> <p class="source">' + i.source + '<span class="citation">' + i.citation + '</span><span class="year">' + i.year + '</span><p/>';
+  let quoteToPage = '<p class="quote">' + i.quote +  '</p> <p class="source">' + i.source;
+
+//Checks if citation and year property exist for the quote object
+  if(i.hasOwnProperty('citation')){
+  quoteToPage += '<span class="citation">' + i.citation + '</span>';
+  };
+
+  if(i.hasOwnProperty('year')){
+    quoteToPage +=  '<span class="year">' + i.year + '</span>';
+  };
+
+  //Adds IMDB Rating and Link
+
+  quoteToPage += '<span class="year"><a href="' + i.imdbLink + '"> IMDB Rating: ' + i.imdbRating + '</a></span><p/>';
+
   const printToPage = document.querySelector('#quote-box');
   printToPage.innerHTML = quoteToPage;
 }
