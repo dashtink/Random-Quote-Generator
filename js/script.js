@@ -81,77 +81,71 @@ let quotes = [
 ];
 
 /**
-* Gets a random quote from the "quotes" object. 
+* Gets a random quote from the "quotes" object by generating a random number 
 */
-
 function getRandomQuote(arry) {
   let i = 0;
   i = Math.floor(Math.random() * arry.length);
   let randQuote = arry[i];
-
   return randQuote;
 }
 
 /**
  * Gets random rgb color values
  */
-
  function randomColor(){
    let r = Math.floor(Math.random() * 256);
    let g = Math.floor(Math.random() * 256);
    let b = Math.floor(Math.random() * 256);
-
    let rgbColor = "rgb("+ r + ", " + g + ", " + b + ")";
    document.body.style.backgroundColor = rgbColor;
    console.log(rgbColor);
  }
 
-/***
-Prints the random quote from the "getRandomQuote" function to the page.
-***/
-
+/**
+* Prints the random quote from the "getRandomQuote" function to the page
+*/
 function printQuote(){
   let i = getRandomQuote(quotes);
   let quoteToPage = '<p class="quote">' + i.quote + '</p> <p class="source">' + i.source;
 
-//Checks if citation and year property exist for the quote object
+  //Checks if citation and year property exist for the quote object
   if(i.hasOwnProperty('citation')){
   quoteToPage += '<span class="citation">' + i.citation + '</span>';
   };
-
   if(i.hasOwnProperty('year')){
     quoteToPage +=  '<span class="year">' + i.year + '</span>';
   };
 
   //Adds IMDB Rating and Link
-
-if(i.hasOwnProperty('imdbRating')){
-  quoteToPage += '<span class="year"><a href="' + i.imdbLink + '"> IMDB Rating: ' + i.imdbRating + '</a></span>';
-};
-  
+  if(i.hasOwnProperty('imdbRating')){
+    quoteToPage += '<span class="year"><a href="' + i.imdbLink + '"> IMDB Rating: ' + i.imdbRating + '</a></span>';
+  };
   quoteToPage += '<p/>';
 
+  //Calls "randomColor" function to change backgrounnd color
   randomColor();
 
+  //Inserts quote into HTML
   const printToPage = document.querySelector('#quote-box');
   printToPage.innerHTML = quoteToPage;
 }
 
-/***
- Calls "printQuote" function on page load.
- ***/
+/**
+ * Calls "printQuote" function on page load
+ */
 
 document.onload = printQuote();
 
-/***
-Adds event listener to the "Show another quote" button and uses the "printQuote" function to print quote to page.
-***/
+/**
+* Adds event listener to the "Show another quote" button and uses the "printQuote" function to print quote to page
+*/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
 
 /**
- * Automatically generates a new quote after 10 seconds
+ * Automatically generates a new quote after 20 seconds
  */
 
- window.setInterval(printQuote, 1000);
+ window.setInterval(printQuote, 20000);
